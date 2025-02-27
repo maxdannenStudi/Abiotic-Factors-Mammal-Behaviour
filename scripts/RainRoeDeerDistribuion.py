@@ -1,10 +1,16 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
+
+# Ensure the graph save directory exists
+save_path = r"C:\Users\maxda\Uni\SUS3\WeatherAnimalData2025\graphs"
+os.makedirs(save_path, exist_ok=True)
 
 # File paths
 observations_file = r"C:\Users\maxda\Uni\SUS3\WeatherAnimalData2025\rawData\filtered_observations.csv"
 weather_file = r"C:\Users\maxda\Uni\SUS3\WeatherAnimalData2025\rawData\merged_weather_data.csv"
+output_image_path = os.path.join(save_path, "Rain_Capreolus_Distribution.png")
 
 # Read files
 observations_data = pd.read_csv(observations_file)
@@ -89,6 +95,10 @@ plt.ylabel("Number of Captures", fontsize=12)
 plt.xticks(x, rain_labels, rotation=45, ha="right")
 plt.legend(loc="upper right")
 plt.tight_layout()
+
+# Save the graph
+plt.savefig(output_image_path, dpi=300)
+print(f"Graph saved at: {output_image_path}")
 
 # Show plot
 plt.show()
